@@ -1,0 +1,105 @@
+JavaScript Theory
+
+1. Closures in JavaScript
+A closure in JavaScript is a feature where an inner function 
+has access to the outer (enclosing) function's variables—a scope chain. 
+The closure has three scope chains: it has access to its own scope (variables defined 
+between its curly brackets), access to the outer function's variables, and access to 
+the global variables.
+
+let addNum = x => {
+  return function(y) {
+    return x + y;
+  };
+}
+
+let addNewNum = addNum(2);
+let addMoreNum = addNum(5);
+
+console.log(addNewNum(6));  // 8
+console.log(addMoreNum(4)); // 9
+
+2. Differences Between var, let, and const
+
+var: Has function scope, and is hoisted to the top of its function. Variables 
+declared with var can be redeclared and updated.
+
+Example of using var
+A variable can be initialized more than once using var and it's value changed.
+var myName = 'Cilla';
+var myName = 'Can change with var and redeclared'
+
+let: Introduced in ES6, has block scope (scoped to the nearest enclosing block), 
+and is not hoisted. Variables declared with let can be updated but not 
+redeclared within the same scope.
+
+
+Example of using let 
+A variable can be initialized once using let but can be reassigned.
+let herName = 'Leticia'
+herName = 'Leti'
+
+const: Also has block scope and is not hoisted. 
+Variables declared with const must be initialized at the time of declaration 
+and cannot be updated or redeclared.
+
+Example of const
+Variables declared with const cannot be redeclared or reassigned.
+const fixedRate = 34.0
+
+
+
+3. Higher-Order Functions in JavaScript
+Higher-order functions are functions that can take other functions 
+as arguments or return them as results. This concept is a cornerstone of 
+functional programming in JavaScript.
+
+function map(array, transform) {
+  const result = [];
+  for (let element of array) {
+    result.push(transform(element));
+  }
+  return result;
+}
+
+const numbers = [1, 2, 3, 4];
+const doubled = map(numbers, number => number * 2);
+
+console.log(doubled); // [2, 4, 6, 8]
+
+
+4. State and Props in React
+State is a built-in React object that is used to contain data or information about the component's current situation. It's mutable and can cause the component to re-render when updated.
+
+Props (short for properties) are read-only components that must be passed to the component like function parameters. They are immutable from the child component's perspective.
+
+Differences and Usage:
+
+State is used for mutable data that will change, especially due to user interaction.
+Props are used to pass data and callback functions to child components.
+
+Example
+
+function Tour(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { city: 'Bali' };
+  }
+
+  render() {
+    return <Tour city={this.state.city} />;
+  }
+}
+
+
+
+5. Component Lifecycle Methods in React
+React class components go through a lifecycle that allows you to run code at 
+specific times during the component's lifetime. Some commonly used lifecycle methods include:
+
+componentDidMount: Invoked immediately after a component is mounted (inserted into the tree). 
+It's used for initializing the DOM
